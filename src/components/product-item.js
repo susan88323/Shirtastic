@@ -1,29 +1,36 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import { Card } from "react-bootstrap"
 import styles from "./product-item.module.scss"
-import shirtImage from "../images/mans-shirt-1.jpg"
+
 import BasketIcon from "./basket-icon"
 import EditIcon from "./edit-icon"
 import { ADD_TO_CART, useStateValue } from "../state/state"
 
-const ProductItem = props => {
+const ProductItem = ({ item }) => {
   const [isHoveredCart, setHoveredCart] = useState(false)
   const [isHoveredEdit, setHoveredEdit] = useState(false)
+  const [featuredItem, setFeatured] = useState()
   const [{ cart }, dispatch] = useStateValue()
 
-  const handleAddToCart = item => {
-    dispatch({ type: ADD_TO_CART, payload: item })
+  useEffect(() => {
+    const bestPriceItem = item.items.reduce((prev, curr) => (prev.price < curr.price ? prev : curr))
+    setFeatured({ ...item, items: bestPriceItem })
+    return () => {}
+  }, [item])
+  const handleAddToCart = () => {
+    dispatch({ type: ADD_TO_CART, payload: featuredItem })
   }
+
   return (
     <Card className={styles.card}>
-      <Card.Img variant="top" src={shirtImage} />
-      <Card.Title className={styles.cardTitle}>cardTitle</Card.Title>
-      <Card.Body className={styles.cardDescription}>Here the short description comes</Card.Body>
+      <Card.Img variant="top" src={featuredItem && featuredItem.items.image} />
+      <Card.Title className={styles.cardTitle}>{featuredItem && featuredItem.name}</Card.Title>
+      <Card.Body className={styles.cardDescription}>{featuredItem && featuredItem.description}</Card.Body>
       <div className={styles.actionsContainer}>
         <BasketIcon
           color={isHoveredCart ? "#0F5279" : "#10A2DC"}
-          onClick={() => handleAddToCart(props.title)}
+          onClick={handleAddToCart}
           size={2}
           onMouseEnter={() => {
             setHoveredCart(true)
@@ -32,7 +39,7 @@ const ProductItem = props => {
             setHoveredCart(false)
           }}
         />
-        <strong>$10</strong>
+        <strong>${featuredItem && featuredItem.items.price}</strong>
         <EditIcon
           color={isHoveredEdit ? "#0F5279" : "#10A2DC"}
           size={1.9}
@@ -49,10 +56,7 @@ const ProductItem = props => {
 }
 
 ProductItem.propTypes = {
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  title: PropTypes.string,
-  description: PropTypes.string,
-  price: PropTypes.string,
+  item: PropTypes.object,
 }
 
 export default ProductItem

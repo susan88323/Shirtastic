@@ -4,6 +4,10 @@
   border-radius: 15px !important;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.26) !important;
   cursor: pointer;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .cardTitle {
@@ -17,6 +21,9 @@
 .cardDescription {
   font-size: 0.875rem;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .actionsContainer {

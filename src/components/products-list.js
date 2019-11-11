@@ -6,7 +6,7 @@ import { Col, Row } from "react-bootstrap"
 const ProductsList = ({ items }) => {
   const shirts = items.map((item, index) => (
     <Col key={index} xs lg={4} md={6} sm={12}>
-      <ProductItem title={item} />
+      <ProductItem item={item} />
     </Col>
   ))
 
@@ -18,7 +18,7 @@ ProductsList.propTypes = {
 }
 
 ProductsList.defaultProps = {
-  items: [1, 2, 3, 4],
+  items: [],
 }
 
 export default ProductsList
