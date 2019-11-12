@@ -3,7 +3,24 @@
         box-shadow: 0 0 6px  #777
     }
     img {
-        width: 15rem;
+        width: auto;
+        height: 4.5rem;
+    }
+
+    .navLink {
+        font-size: 0.875rem;
+        font-weight: bold;
+        text-decoration: none;
+        text-transform: uppercase;
+        cursor: pointer;
+        padding: 0.5rem 1.5rem;
+        border-radius: 1rem;
+        background-color: #10A2DC;
+        color: #FFFFFF;
+        outline: 0;
+        border: 0;
+        text-align: center;
+        margin-right: 2rem;
     }
 
     .cartBtn {
