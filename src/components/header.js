@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import logo from "../images/navlogo.png"
 import headerStyles from "./header.module.scss"
-import { Navbar, NavbarBrand } from "react-bootstrap"
+import { Navbar } from "react-bootstrap"
 import BasketIcon from "./basket-icon"
 import { useStateValue } from "../state/state"
 
@@ -13,11 +13,11 @@ const Header = ({ siteTitle }) => {
   return (
     <header className={headerStyles.container}>
       <Navbar variant="light" sticky={"top"} className={`py-0 ${headerStyles.shadowNav}`}>
-        <NavbarBrand>
+        <Navbar.Brand>
           <Link to="/" className="navbar-brand">
             <img src={logo} alt={siteTitle} />
           </Link>
-        </NavbarBrand>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end d-flex" id="basic-navbar-nav">
           <div className={headerStyles.vr} />

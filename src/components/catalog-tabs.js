@@ -7,7 +7,7 @@ const CatalogTabs = ({ onSelect, selectedId }) => {
   console.log("Function: CatalogTabs, selectedId: ", selectedId)
 
   return (
-    <Nav variant={"tabs"} className="mt-3">
+    <Nav variant={"tabs"} className="mt-3 catalog-container">
       <Nav.Item>
         <Nav.Link className={selectedId === 0 ? "active" : ""} onClick={() => onSelect(0)}>
           All Designs

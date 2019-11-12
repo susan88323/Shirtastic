@@ -1,13 +1,15 @@
-.nav-link{
-  font-size: 16px;
-  font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
-  color: #CDCDCD !important;
-  border: 0 none !important;
-  cursor: pointer;
-  &.active {
-    color: #274686 !important;
-    border-bottom: 2px solid #274686 !important;
-    background-color: transparent !important;
+.catalog-container{
+  .nav-link{
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    color: #CDCDCD !important;
+    border: 0 none !important;
+    cursor: pointer;
+    &.active {
+      color: #274686 !important;
+      border-bottom: 2px solid #274686 !important;
+      background-color: transparent !important;
+    }
   }
 }
