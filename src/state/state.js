@@ -14,7 +14,7 @@ const reducer = (state, action) => {
   }
 }
 
-export const StateContext = createContext()
+export const StateContext = createContext([{ cart: [] }])
 export const StateProvider = ({ children }) => {
   const initialState = {
     cart: [],
