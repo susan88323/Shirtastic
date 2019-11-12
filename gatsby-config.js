@@ -21,6 +21,10 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/t-shirts/*`] },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,

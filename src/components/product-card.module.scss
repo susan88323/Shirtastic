@@ -1,4 +1,9 @@
-.card{
+.link {
+  &:hover {
+    text-decoration: none!important;
+  }
+}
+.card {
   padding: 0.5rem;
   margin: 0.5rem 0.5rem 1rem;
   border-radius: 15px !important;

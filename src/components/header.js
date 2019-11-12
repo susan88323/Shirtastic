@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import logo from "../images/navlogo.png"
 import headerStyles from "./header.module.scss"
-import { Navbar, NavbarBrand, Row } from "react-bootstrap"
+import { Navbar, NavbarBrand } from "react-bootstrap"
 import BasketIcon from "./basket-icon"
 import { useStateValue } from "../state/state"
 

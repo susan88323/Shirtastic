@@ -22,10 +22,9 @@ const Layout = ({ children }) => {
       }
     }
   `)
-
   return (
     <div className={layoutStyles.mainContainer}>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header siteTitle={data && data.site.siteMetadata.title} />
       <main className="container-fluid">
         <div className="container">{children}</div>
       </main>
