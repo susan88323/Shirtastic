@@ -4,8 +4,9 @@ const reducer = (state, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       const newCart = [...state.cart]
-      if (newCart.findIndex(item => item.id === action.payload.id) === -1) {
+      if (newCart.findIndex(item => item.items.id === action.payload.items.id) === -1) {
         newCart.push(action.payload)
+        return { ...state, cart: newCart }
       }
       return { ...state, cart: newCart }
     default:

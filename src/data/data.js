@@ -13,9 +13,9 @@ export const dataSource = [
     description:
       "Cotton tees in our signature slim fit. Featuring a crewneck and icon at left chest. Slim Fit. Imported",
     items: [
-      { image: shirtImage11, price: 10, qty: 3, size: ["S", "M", "L"] },
-      { image: shirtImage12, price: 11, qty: 1, size: ["S"] },
-      { image: shirtImage13, price: 9, qty: 5, size: ["M", "L"] },
+      { id: 11, image: shirtImage11, price: 10, qty: 3, size: ["S", "M", "L"] },
+      { id: 12, image: shirtImage12, price: 11, qty: 1, size: ["S"] },
+      { id: 13, image: shirtImage13, price: 9, qty: 5, size: ["M", "L"] },
     ],
   },
   {
@@ -25,9 +25,9 @@ export const dataSource = [
     description:
       "Cotton tees in our signature slim fit. Featuring a crewneck and icon at left chest. Slim Fit. Imported",
     items: [
-      { image: shirtImageW11, price: 13, qty: 3, size: ["S", "M", "L"] },
-      { image: shirtImageW12, price: 22, qty: 1, size: ["S"] },
-      { image: shirtImageW13, price: 14, qty: 5, size: ["M", "L"] },
+      { id: 21, image: shirtImageW11, price: 13, qty: 3, size: ["S", "M", "L"] },
+      { id: 22, image: shirtImageW12, price: 22, qty: 1, size: ["S"] },
+      { id: 23, image: shirtImageW13, price: 14, qty: 5, size: ["M", "L"] },
     ],
   },
 ]

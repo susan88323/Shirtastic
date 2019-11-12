@@ -4,10 +4,11 @@ import { Card } from "react-bootstrap"
 import styles from "./product-card.module.scss"
 
 import BasketIcon from "./basket-icon"
-import EditIcon from "./edit-icon"
+import ArrowNextIcon from "./arrow-next-icon"
 import { ADD_TO_CART, useStateValue } from "../state/state"
 
 import { Link } from "gatsby"
+import { navigate } from "../../.cache/gatsby-browser-entry"
 
 const ProductCard = ({ item }) => {
   const [isHoveredCart, setHoveredCart] = useState(false)
@@ -47,12 +48,13 @@ const ProductCard = ({ item }) => {
               }}
             />
             <strong>${featuredItem.items.price}</strong>
-            <EditIcon
+            <ArrowNextIcon
               color={isHoveredEdit ? "#0F5279" : "#10A2DC"}
               size={1.9}
               onMouseEnter={() => {
                 setHoveredEdit(true)
               }}
+              onClick={() => navigate(`/t-shirts/${featuredItem.id}`)}
               onMouseLeave={() => {
                 setHoveredEdit(false)
               }}

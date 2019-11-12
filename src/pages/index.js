@@ -4,7 +4,6 @@ import CatalogTabs from "../components/catalog-tabs"
 import Layout from "../hoc/layout"
 import SEO from "../components/seo"
 import ProductsList from "../components/products-list"
-import { ADD_TO_CART, StateProvider } from "../state/state"
 import { dataSource } from "../data/data"
 const IndexPage = () => {
   const [category, setCategory] = useState(0)
