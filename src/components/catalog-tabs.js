@@ -1,35 +1,46 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { Nav } from "react-bootstrap"
 import "./catalog-tabs.scss"
+import { Link } from "gatsby"
+import { SET_CATEGORY, useStateValue } from "../state/state"
 
-const CatalogTabs = ({ onSelect, selectedId }) => {
-  console.log("Function: CatalogTabs, selectedId: ", selectedId)
+const CatalogTabs = () => {
+  const [{ category }, dispatch] = useStateValue()
 
   return (
     <Nav variant={"tabs"} className="mt-3 catalog-container">
       <Nav.Item>
-        <Nav.Link className={selectedId === 0 ? "active" : ""} onClick={() => onSelect(0)}>
+        <Nav.Link
+          className={category === 0 ? "active" : ""}
+          as={Link}
+          to={"/"}
+          onClick={() => dispatch({ type: SET_CATEGORY, payload: 0 })}
+        >
           All Designs
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link className={selectedId === 1 ? "active" : ""} onClick={() => onSelect(1)}>
+        <Nav.Link
+          className={category === 1 ? "active" : ""}
+          as={Link}
+          to={"/men"}
+          onClick={() => dispatch({ type: SET_CATEGORY, payload: 1 })}
+        >
           Men
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link className={selectedId === 2 ? "active" : ""} onClick={() => onSelect(2)}>
+        <Nav.Link
+          className={category === 2 ? "active" : ""}
+          as={Link}
+          to={"/women"}
+          onClick={() => dispatch({ type: SET_CATEGORY, payload: 2 })}
+        >
           Women
         </Nav.Link>
       </Nav.Item>
     </Nav>
   )
-}
-
-CatalogTabs.propTypes = {
-  onSelect: PropTypes.func,
-  selectedId: PropTypes.number,
 }
 
 export default CatalogTabs

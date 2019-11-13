@@ -39,5 +39,46 @@
     "items": [
       { "id": 41, "image": "images/w-shirt-2-1.jpg", "price": 13, "qty": 3, "size": ["S", "M", "L"] }
     ]
+  },
+  {
+    "name": "Awesome T-Shirt",
+    "gender": "M",
+    "description":
+    "Cotton tees in our signature slim fit. Featuring a crewneck and icon at left chest. Slim Fit. Imported",
+    "items": [
+      { "id": 51, "image": "images/mans-shirt-1-1.jpg", "price": 10, "qty": 3, "size": ["S", "M", "L"] },
+      { "id": 52, "image": "images/mans-shirt-1-2.jpg", "price": 11, "qty": 1, "size": ["S"] },
+      { "id": 53, "image": "images/mans-shirt-1-3.jpg", "price": 9, "qty": 5, "size": ["M", "L"] }
+    ]
+  },
+  {
+    "name": "Awesome Women T-Shirt",
+    "gender": "W",
+    "description":
+    "Cotton tees in our signature slim fit. Featuring a crewneck and icon at left chest. Slim Fit. Imported",
+    "items": [
+      { "id": 61, "image": "images/w-shirt-1-1.jpg", "price": 13, "qty": 3, "size": ["S", "M", "L"] },
+      { "id": 62, "image": "images/w-shirt-1-2.jpg", "price": 22, "qty": 1, "size": ["S"] },
+      { "id": 63, "image": "images/w-shirt-1-3.jpg", "price": 14, "qty": 5, "size": ["M", "L"] }
+    ]
+  },
+  {
+    "name": "Awesome T-Shirt 2",
+    "gender": "M",
+    "description":
+    "Cotton tees in our signature slim fit. Featuring a crewneck and icon at left chest. Slim Fit. Imported",
+    "items": [
+      { "id": 71, "image": "images/mans-shirt-2-1.jpg", "price": 15, "qty": 1, "size": ["S", "L"] },
+      { "id": 72, "image": "images/mans-shirt-2-2.jpg", "price": 14, "qty": 1, "size": ["S"] }
+    ]
+  },
+  {
+    "name": "Awesome Women T-Shirt 2",
+    "gender": "W",
+    "description":
+    "Cotton tees in our signature slim fit. Featuring a crewneck and icon at left chest. Slim Fit. Imported",
+    "items": [
+      { "id": 71, "image": "images/w-shirt-2-1.jpg", "price": 13, "qty": 3, "size": ["S", "M", "L"] }
+    ]
   }
 ]
