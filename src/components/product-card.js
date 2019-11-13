@@ -17,8 +17,8 @@ const ProductCard = ({ item }) => {
   const [{ cart }, dispatch] = useStateValue()
 
   useEffect(() => {
-    const bestPriceItem = item.items.reduce((prev, curr) => (prev.price < curr.price ? prev : curr))
-    setFeatured({ ...item, items: bestPriceItem })
+    const bestPriceItem = item.node.items.reduce((prev, curr) => (prev.price < curr.price ? prev : curr))
+    setFeatured({ ...item.node, items: bestPriceItem })
     return () => {}
   }, [item])
   const handleAddToCart = () => {
@@ -29,7 +29,7 @@ const ProductCard = ({ item }) => {
     <>
       {featuredItem && (
         <Card className={styles.card}>
-          <Link to={`/t-shirts/${featuredItem.id}`} className={styles.link}>
+          <Link to={`/product/${featuredItem.id}`} className={styles.link}>
             <Card.Img variant="top" src={featuredItem.items.image} />
             <Card.Title className={styles.cardTitle}>{featuredItem.name}</Card.Title>
             <Card.Body className={styles.cardDescription}>{featuredItem.description}</Card.Body>
@@ -54,7 +54,7 @@ const ProductCard = ({ item }) => {
               onMouseEnter={() => {
                 setHoveredEdit(true)
               }}
-              onClick={() => navigate(`/t-shirts/${featuredItem.id}`)}
+              onClick={() => navigate(`/product/${featuredItem.id}`)}
               onMouseLeave={() => {
                 setHoveredEdit(false)
               }}
