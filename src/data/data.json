@@ -5,9 +5,9 @@
     "description":
     "Cotton tees in our signature slim fit. Featuring a crewneck and icon at left chest. Slim Fit. Imported",
     "items": [
-      { "id": 11, "image": "mans-shirt-1-1.jpg", "price": 10, "qty": 3, "size": ["S", "M", "L"] },
-      { "id": 12, "image": "mans-shirt-1-2.jpg", "price": 11, "qty": 1, "size": ["S"] },
-      { "id": 13, "image": "mans-shirt-1-3.jpg", "price": 9, "qty": 5, "size": ["M", "L"] }
+      { "id": 11, "image": "../images/mans-shirt-1-1.jpg", "price": 10, "qty": 3, "size": ["S", "M", "L"] },
+      { "id": 12, "image": "../images/mans-shirt-1-2.jpg", "price": 11, "qty": 1, "size": ["S"] },
+      { "id": 13, "image": "../images/mans-shirt-1-3.jpg", "price": 9, "qty": 5, "size": ["M", "L"] }
     ]
   },
   {
@@ -16,9 +16,9 @@
     "description":
     "Cotton tees in our signature slim fit. Featuring a crewneck and icon at left chest. Slim Fit. Imported",
     "items": [
-      { "id": 21, "image": "w-shirt-1-1.jpg", "price": 13, "qty": 3, "size": ["S", "M", "L"] },
-      { "id": 22, "image": "w-shirt-1-2.jpg", "price": 22, "qty": 1, "size": ["S"] },
-      { "id": 23, "image": "w-shirt-1-3.jpg", "price": 14, "qty": 5, "size": ["M", "L"] }
+      { "id": 21, "image": "../images/w-shirt-1-1.jpg", "price": 13, "qty": 3, "size": ["S", "M", "L"] },
+      { "id": 22, "image": "../images/w-shirt-1-2.jpg", "price": 22, "qty": 1, "size": ["S"] },
+      { "id": 23, "image": "../images/w-shirt-1-3.jpg", "price": 14, "qty": 5, "size": ["M", "L"] }
     ]
   },
   {
@@ -27,8 +27,8 @@
     "description":
     "Cotton tees in our signature slim fit. Featuring a crewneck and icon at left chest. Slim Fit. Imported",
     "items": [
-      { "id": 31, "image": "mans-shirt-2-1.jpg", "price": 15, "qty": 1, "size": ["S", "L"] },
-      { "id": 32, "image": "mans-shirt-2-2.jpg", "price": 14, "qty": 1, "size": ["S"] }
+      { "id": 31, "image": "../images/mans-shirt-2-1.jpg", "price": 15, "qty": 1, "size": ["S", "L"] },
+      { "id": 32, "image": "../images/mans-shirt-2-2.jpg", "price": 14, "qty": 1, "size": ["S"] }
     ]
   },
   {
@@ -37,7 +37,7 @@
     "description":
     "Cotton tees in our signature slim fit. Featuring a crewneck and icon at left chest. Slim Fit. Imported",
     "items": [
-      { "id": 41, "image": "w-shirt-2-1.jpg", "price": 13, "qty": 3, "size": ["S", "M", "L"] }
+      { "id": 41, "image": "../images/w-shirt-2-1.jpg", "price": 13, "qty": 3, "size": ["S", "M", "L"] }
     ]
   }
 ]

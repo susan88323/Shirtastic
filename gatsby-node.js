@@ -1,4 +1,5 @@
 const path = require("path")
+const { createFilePath } = require("gatsby-source-filesystem")
 
 exports.createPages = ({ graphql, actions, reporter }) => {
   const { createPage } = actions
@@ -10,7 +11,23 @@ exports.createPages = ({ graphql, actions, reporter }) => {
             id
             items {
               id
-              image
+              image {
+                childImageSharp {
+                  fluid(maxWidth: 300, quality: 100) {
+                    base64
+                    src
+                    sizes
+                    presentationWidth
+                    presentationHeight
+                    originalName
+                    originalImg
+                    aspectRatio
+                    srcSet
+                    srcSetWebp
+                    srcWebp
+                  }
+                }
+              }
               price
               qty
               size

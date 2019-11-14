@@ -3,6 +3,7 @@ import styles from "./product-item.module.scss"
 import { Col, Row } from "react-bootstrap"
 import BasketIcon from "./basket-icon"
 import { ADD_TO_CART, useStateValue } from "../state/state"
+import Img from "gatsby-image"
 
 const ProductItem = ({ productItem }) => {
   const [selectedItem, setSelected] = useState()
@@ -21,10 +22,10 @@ const ProductItem = ({ productItem }) => {
         <div className={styles.mainContainer}>
           <div className={styles.previewContainer}>
             <div className={styles.selectedPreviewContainer}>
-              <img
+              <Img
                 className={styles.selectedPreviewImage}
-                src={`../${selectedItem.items.image}`}
-                alt={productItem.name}
+                fixed={selectedItem.items.image.childImageSharp.fixed}
+                alt={selectedItem.items.image.name}
               />
               <span>Available sizes:</span>
               <div className="d-flex flex-row align-items-center justify-content-between">
@@ -46,7 +47,11 @@ const ProductItem = ({ productItem }) => {
                     key={item.id}
                     onClick={() => setSelected({ ...selectedItem, items: item })}
                   >
-                    <img src={`../${item.image}`} alt={productItem.name} />
+                    <Img
+                      className={styles.previewThumb}
+                      fixed={item.image.childImageSharp.fixed}
+                      alt={item.image.name}
+                    />
                   </Col>
                 ))}
             </Row>
