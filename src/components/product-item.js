@@ -8,7 +8,6 @@ const ProductItem = ({ productItem }) => {
   const [selectedItem, setSelected] = useState()
 
   useEffect(() => {
-    console.log("Function: , id: ", productItem)
     setSelected({
       ...productItem,
       items: productItem.items.reduce((prev, curr) => (prev.price < curr.price ? prev : curr)),

@@ -77,12 +77,11 @@ exports.createPages = ({ graphql, actions, reporter }) => {
         createPage({
           path: `/product/${node.id}`,
           component: path.resolve("./src/templates/product-template.js"),
-          context: { ...node },
+          context: { id: node.id },
         })
       })
     })
     .catch(error => {
-      console.error("Function: createPages, error: ", error)
       reporter.panicOnBuild(`Error while running GraphQL query.`)
     })
 }
