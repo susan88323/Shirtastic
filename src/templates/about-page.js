@@ -2,6 +2,7 @@ import React from "react"
 import styles from "./about-page.module.scss"
 import { Col, Row } from "react-bootstrap"
 import Img from "gatsby-image"
+import PropTypes from "prop-types"
 
 export const AboutPageTemplate = ({ title, contacts, description, logo }) => {
   return (
