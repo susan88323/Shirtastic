@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 
 import CatalogTabs from "../components/catalog-tabs"
 import Layout from "../hoc/layout"
@@ -9,27 +9,7 @@ import { navigate } from "../../.cache/gatsby-browser-entry"
 import { useStateValue } from "../state/state"
 
 const IndexPage = ({ data, pageContext }) => {
-  const { allDataJson, images } = data
-  // const [dataWithImage, setDataWithImage] = useState([])
-  // useEffect(() => {
-  //   const temp = allDataJson.edges.map(({ node }) => {
-  //     const itemsWithImage = node.items.map(item => {
-  //       const imageIndex = images.edges.findIndex(
-  //         x =>
-  //           x.node.name ===
-  //           item.image
-  //             .split(".")
-  //             .slice(0, -1)
-  //             .join(".")
-  //       )
-  //       if (images.edges[imageIndex]) {
-  //         return { ...item, image: images.edges[imageIndex].node.childImageSharp.fluid }
-  //       }
-  //     })
-  //     return { ...node, items: itemsWithImage }
-  //   })
-  //   setDataWithImage(temp)
-  // }, [images])
+  const { allDataJson } = data
 
   const { currentPage, numPages } = pageContext
   const [{ category }] = useStateValue()
