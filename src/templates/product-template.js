@@ -15,7 +15,7 @@ export const ProductPageTemplate = ({ name, gender, description, items }) => (
 const ProductPage = ({ data }) => (
   <Layout>
     <SEO />
-      <ProductItem productItem={data.markdownRemark} />
+    <ProductItem productItem={data.markdownRemark} />
   </Layout>
 )
 
