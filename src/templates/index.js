@@ -6,6 +6,7 @@ import ProductsList from "../components/products-list"
 import { graphql } from "gatsby"
 import { navigate } from "../../.cache/gatsby-browser-entry"
 import { useStateValue } from "../state/state"
+import SEO from "../components/seo"
 
 const IndexPage = ({ data, pageContext }) => {
   const { allDataJson } = data
@@ -18,6 +19,7 @@ const IndexPage = ({ data, pageContext }) => {
 
   return (
     <Layout>
+      <SEO />
       <CatalogTabs />
       <ProductsList
         items={allDataJson.edges.map(edge => edge.node)}

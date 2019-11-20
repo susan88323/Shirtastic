@@ -2,10 +2,12 @@ import React from "react"
 import ProductItem from "../components/product-item"
 import Layout from "../hoc/layout"
 import { graphql } from "gatsby"
+import SEO from "../components/seo"
 
 const ProductTemplate = ({ data }) => {
   return (
     <Layout>
+      <SEO />
       <ProductItem productItem={data.dataJson} />
     </Layout>
   )

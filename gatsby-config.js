@@ -6,6 +6,7 @@ module.exports = {
       email: "info@dev6.com",
       phone: "+1 (000) 000 0000",
     },
+    titleTemplate: "%s · Shirtastic",
     author: `dev6`,
   },
   plugins: [
@@ -43,6 +44,7 @@ module.exports = {
     `gatsby-transformer-remark`,
     `gatsby-transformer-json`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {

@@ -3,11 +3,13 @@ import { graphql } from "gatsby"
 import Layout from "../hoc/layout"
 import { Col, Row } from "react-bootstrap"
 import styles from "./about.module.scss"
+import SEO from "../components/seo"
 const About = ({ data }) => {
   const { title, contacts, description } = data.site.siteMetadata
 
   return (
     <Layout>
+      <SEO />
       <div className={styles.aboutContainer}>
         <h1>{title}</h1>
         <div>{description}</div>
