@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react"
-import { dataSource } from "../data/data"
 import styles from "./product-item.module.scss"
 import { Col, Row } from "react-bootstrap"
 import BasketIcon from "./basket-icon"
 import { ADD_TO_CART, useStateValue } from "../state/state"
+import Img from "gatsby-image"
 
-const ProductItem = ({ id }) => {
-  const [product, setProduct] = useState()
+const ProductItem = ({ productItem }) => {
   const [selectedItem, setSelected] = useState()
 
   useEffect(() => {
-    const data = dataSource.find(item => item.id === parseInt(id))
-    setProduct(data)
-    setSelected({ ...data, items: data.items.reduce((prev, curr) => (prev.price < curr.price ? prev : curr)) })
-  }, [id])
+    setSelected({
+      ...productItem,
+      items: productItem.frontmatter.variants.reduce((prev, curr) => (prev.price < curr.price ? prev : curr)),
+    })
+  }, [productItem])
 
   const [{ cart }, dispatch] = useStateValue()
   return (
@@ -22,7 +22,11 @@ const ProductItem = ({ id }) => {
         <div className={styles.mainContainer}>
           <div className={styles.previewContainer}>
             <div className={styles.selectedPreviewContainer}>
-              <img className={styles.selectedPreviewImage} src={selectedItem.items.image} alt={product.name} />
+              <Img
+                className={styles.selectedPreviewImage}
+                fixed={selectedItem.items.image.childImageSharp.fixed}
+                alt={selectedItem.items.image.name}
+              />
               <span>Available sizes:</span>
               <div className="d-flex flex-row align-items-center justify-content-between">
                 {selectedItem.items.size.map((size, index) => (
@@ -33,24 +37,28 @@ const ProductItem = ({ id }) => {
               </div>
             </div>
             <Row className={styles.optionsContainer}>
-              {product.items
-                .filter(item => item.id !== selectedItem.items.id)
+              {productItem.frontmatter.variants
+                .filter(item => item.productId !== selectedItem.items.productId)
                 .map(item => (
                   <Col
                     className={styles.pointer}
                     xs={12}
                     lg={4}
-                    key={item.id}
+                    key={item.productId}
                     onClick={() => setSelected({ ...selectedItem, items: item })}
                   >
-                    <img src={item.image} alt={product.name} />
+                    <Img
+                      className={styles.previewThumb}
+                      fixed={item.image.childImageSharp.fixed}
+                      alt={item.image.name}
+                    />
                   </Col>
                 ))}
             </Row>
           </div>
           <div className={styles.detailsContainer}>
-            <h3>{selectedItem.name}</h3>
-            <div className={styles.description}>{selectedItem.description}</div>
+            <h3>{selectedItem.frontmatter.name}</h3>
+            <div className={styles.description} dangerouslySetInnerHTML={{ __html: selectedItem.html }} />
             <div className={styles.infoContainer}>
               <div className={styles.price}>Price: ${selectedItem.items.price}</div>
               <div className={styles.price}>In stock: {selectedItem.items.qty}</div>

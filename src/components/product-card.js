@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import { Card } from "react-bootstrap"
 import styles from "./product-card.module.scss"
+import Img from "gatsby-image"
 
 import BasketIcon from "./basket-icon"
 import ArrowNextIcon from "./arrow-next-icon"
@@ -15,9 +16,10 @@ const ProductCard = ({ item }) => {
   const [isHoveredEdit, setHoveredEdit] = useState(false)
   const [featuredItem, setFeatured] = useState()
   const [{ cart }, dispatch] = useStateValue()
-
   useEffect(() => {
-    const bestPriceItem = item.items.reduce((prev, curr) => (prev.price < curr.price ? prev : curr))
+    const bestPriceItem = item.frontmatter.variants.reduce((prev, curr) => {
+      return prev.price < curr.price ? prev : curr
+    })
     setFeatured({ ...item, items: bestPriceItem })
     return () => {}
   }, [item])
@@ -29,8 +31,12 @@ const ProductCard = ({ item }) => {
     <>
       {featuredItem && (
         <Card className={styles.card}>
-          <Link to={`/t-shirts/${featuredItem.id}`} className={styles.link}>
-            <Card.Img variant="top" src={featuredItem.items.image} />
+          <Link to={`/product/${featuredItem.id}`} className={styles.link}>
+            <Img
+              className="card-img-top"
+              fluid={featuredItem.items.image.childImageSharp.fluid}
+              alt={featuredItem.name}
+            />
             <Card.Title className={styles.cardTitle}>{featuredItem.name}</Card.Title>
             <Card.Body className={styles.cardDescription}>{featuredItem.description}</Card.Body>
           </Link>
@@ -54,7 +60,7 @@ const ProductCard = ({ item }) => {
               onMouseEnter={() => {
                 setHoveredEdit(true)
               }}
-              onClick={() => navigate(`/t-shirts/${featuredItem.id}`)}
+              onClick={() => navigate(`/product/${featuredItem.id}`)}
               onMouseLeave={() => {
                 setHoveredEdit(false)
               }}
