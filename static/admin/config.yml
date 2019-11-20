@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: exercise-7-final
+  branch: exercise-9-starter
 
 media_folder: static/images
 public_folder: /images
