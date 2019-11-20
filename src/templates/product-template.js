@@ -3,36 +3,43 @@ import ProductItem from "../components/product-item"
 import Layout from "../hoc/layout"
 import { graphql } from "gatsby"
 
-const ProductTemplate = ({ data }) => {
-  return (
-    <Layout>
-      <ProductItem productItem={data.dataJson} />
-    </Layout>
-  )
-}
+export const ProductPageTemplate = ({ name, gender, description, items }) => (
+  <div>
+    <h1>{name}</h1>
+    <p>{description}</p>
+    <span>{gender}</span>
+  </div>
+)
 
-export const query = graphql`
-  query productQuery($id: String!) {
-    dataJson(id: { eq: $id }) {
+const ProductPage = ({ data }) => (
+  <Layout>
+    <ProductItem productItem={data.markdownRemark} />
+  </Layout>
+)
+
+export const pageQuery = graphql`
+  query ProductByID($id: String!) {
+    markdownRemark(id: { eq: $id }) {
       id
-      items {
-        id
-        image {
-          name
-          childImageSharp {
-            fixed(width: 200, quality: 100) {
-              ...GatsbyImageSharpFixed
+      html
+      frontmatter {
+        gender
+        name
+        variants {
+          productId
+          image {
+            childImageSharp {
+              fixed(width: 160, quality: 100) {
+                ...GatsbyImageSharpFixed
+              }
             }
           }
+          price
+          qty
+          size
         }
-        price
-        qty
-        size
       }
-      gender
-      description
-      name
     }
   }
 `
-export default ProductTemplate
+export default ProductPage

@@ -9,7 +9,7 @@ import { navigate } from "../../.cache/gatsby-browser-entry"
 import { useStateValue } from "../state/state"
 
 const IndexPage = ({ data, pageContext }) => {
-  const { allDataJson } = data
+  const { allMarkdownRemark } = data
 
   const { currentPage, numPages } = pageContext
   const [{ category }] = useStateValue()
@@ -22,7 +22,7 @@ const IndexPage = ({ data, pageContext }) => {
       <SEO title="Home" />
       <CatalogTabs />
       <ProductsList
-        items={allDataJson.edges.map(edge => edge.node)}
+        items={allMarkdownRemark.edges.map(edge => edge.node)}
         currentPage={currentPage}
         numPages={numPages}
         pageSelected={data => handlePageSelected(data)}
@@ -32,26 +32,30 @@ const IndexPage = ({ data, pageContext }) => {
 }
 export const query = graphql`
   query productListQuery($skip: Int!, $limit: Int!, $gender: String!) {
-    allDataJson(limit: $limit, skip: $skip, filter: { gender: { regex: $gender } }) {
+    allMarkdownRemark(
+      limit: $limit
+      skip: $skip
+      filter: { frontmatter: { templateKey: { eq: "product-template" }, gender: { regex: $gender } } }
+    ) {
       edges {
         node {
           id
-          items {
-            id
-            image {
-              childImageSharp {
-                fluid(maxWidth: 300, quality: 100) {
-                  ...GatsbyImageSharpFluid
+          frontmatter {
+            name
+            variants {
+              productId
+              image {
+                childImageSharp {
+                  fluid(maxWidth: 300, quality: 100) {
+                    ...GatsbyImageSharpFluid
+                  }
                 }
               }
+              price
+              qty
+              size
             }
-            price
-            qty
-            size
           }
-          gender
-          description
-          name
         }
       }
     }

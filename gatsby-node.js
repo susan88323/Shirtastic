@@ -6,21 +6,22 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
   const result = await graphql(`
     {
-      allDataJson(limit: 1000) {
+      allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "product-template" } } }) {
         edges {
           node {
             id
-            gender
+            frontmatter {
+              gender
+            }
           }
         }
       }
     }
   `)
-  if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`)
-    throw result.errors
-  }
-  const products = result.data.allDataJson.edges
+  const products = result.data.allMarkdownRemark.edges
+  const productsMen = result.data.allMarkdownRemark.edges.filter(edge => edge.node.frontmatter.gender === "M")
+  const productsWomen = result.data.allMarkdownRemark.edges.filter(edge => edge.node.frontmatter.gender === "W")
+
   const productsPerPage = 3
   const numPages = Math.ceil(products.length / productsPerPage)
   Array.from({ length: numPages }).forEach((_, i) => {
@@ -36,7 +37,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     })
   })
-  const productsMen = result.data.allDataJson.edges.filter(edge => edge.node.gender === "M")
+
   const numPagesMen = Math.ceil(productsMen.length / productsPerPage)
   Array.from({ length: numPagesMen }).forEach((_, i) => {
     createPage({
@@ -51,7 +52,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     })
   })
-  const productsWomen = result.data.allDataJson.edges.filter(edge => edge.node.gender === "W")
   const numPagesWomen = Math.ceil(productsWomen.length / productsPerPage)
   Array.from({ length: numPagesMen }).forEach((_, i) => {
     createPage({
@@ -66,7 +66,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     })
   })
-  result.data.allDataJson.edges.forEach(({ node }) => {
+  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     createPage({
       path: `/product/${node.id}`,
       component: path.resolve("./src/templates/product-template.js"),

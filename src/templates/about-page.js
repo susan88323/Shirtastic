@@ -3,6 +3,9 @@ import styles from "./about-page.module.scss"
 import { Col, Row } from "react-bootstrap"
 import Img from "gatsby-image"
 import PropTypes from "prop-types"
+import Layout from "../hoc/layout"
+import SEO from "../components/seo"
+import { graphql } from "gatsby"
 
 export const AboutPageTemplate = ({ title, contacts, description, logo }) => {
   return (
@@ -37,3 +40,48 @@ AboutPageTemplate.propTypes = {
   contacts: PropTypes.object,
   description: PropTypes.string,
 }
+
+const AboutPage = ({ data }) => {
+  const { markdownRemark: post } = data
+  const contacts = {
+    email: post.frontmatter.email,
+    phone: post.frontmatter.phone,
+  }
+  return (
+    <Layout>
+      <SEO title={"AboutPage"} />
+      <AboutPageTemplate
+        logo={post.frontmatter.image}
+        contacts={contacts}
+        title={post.frontmatter.title}
+        description={post.html}
+      />
+    </Layout>
+  )
+}
+
+AboutPage.propTypes = {
+  data: PropTypes.object.isRequired,
+}
+
+export default AboutPage
+
+export const aboutPageQuery = graphql`
+  query AboutPage {
+    markdownRemark(frontmatter: { templateKey: { eq: "about-page" } }) {
+      html
+      frontmatter {
+        title
+        image {
+          childImageSharp {
+            fluid(maxWidth: 800, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        email
+        phone
+      }
+    }
+  }
+`
