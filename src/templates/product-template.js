@@ -2,6 +2,7 @@ import React from "react"
 import ProductItem from "../components/product-item"
 import Layout from "../hoc/layout"
 import { graphql } from "gatsby"
+import SEO from "../components/seo"
 
 export const ProductPageTemplate = ({ name, gender, description, items }) => (
   <div>
@@ -13,7 +14,8 @@ export const ProductPageTemplate = ({ name, gender, description, items }) => (
 
 const ProductPage = ({ data }) => (
   <Layout>
-    <ProductItem productItem={data.markdownRemark} />
+    <SEO />
+      <ProductItem productItem={data.markdownRemark} />
   </Layout>
 )
 

@@ -6,10 +6,10 @@ module.exports = {
       email: "info@dev6.com",
       phone: "+1 (000) 000 0000",
     },
+    titleTemplate: "%s · Shirtastic",
     author: `dev6`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
@@ -65,6 +65,7 @@ module.exports = {
     },
     `gatsby-transformer-json`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
