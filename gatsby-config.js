@@ -1,7 +1,11 @@
 module.exports = {
   siteMetadata: {
     title: `Shirtastic Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `This project presents capability of using JAM stack. You are going to learn how to set up the server-less project with outstanding performance. We will go through the steps that familiarize us with GatsbyJS, GraphQL and Netlify CMS. In the end of our bootcamp we'll deploy our project to Netlify`,
+    contacts: {
+      email: "info@dev6.com",
+      phone: "+1 (000) 000 0000",
+    },
     author: `dev6`,
   },
   plugins: [

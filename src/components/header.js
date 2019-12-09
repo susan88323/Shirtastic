@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import logo from "../images/navlogo.png"
 import headerStyles from "./header.module.scss"
-import { Navbar } from "react-bootstrap"
+import { Navbar, Nav } from "react-bootstrap"
 import BasketIcon from "./basket-icon"
 import { useStateValue } from "../state/state"
 
@@ -20,6 +20,14 @@ const Header = ({ siteTitle }) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end d-flex" id="basic-navbar-nav">
+          <Nav.Link 
+            className={headerStyles.navLink}
+            as={Link}
+            to={"/about"}
+            activeStyle={{ backgroundColor: "#0B6689" }}
+          >
+            About
+          </Nav.Link>
           <div className={headerStyles.vr} />
           <div className={headerStyles.cartBtn}>
             <BasketIcon color={"#10A2DC"} size={2} />
