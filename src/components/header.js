@@ -1,4 +1,4 @@
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import logo from "../images/navlogo.png"
@@ -6,16 +6,33 @@ import headerStyles from "./header.module.scss"
 import { Navbar, Nav } from "react-bootstrap"
 import BasketIcon from "./basket-icon"
 import { useStateValue } from "../state/state"
+import Img from "gatsby-image"
 
 const Header = ({ siteTitle }) => {
   const [{ cart }, dispatch] = useStateValue()
+
+  const data = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "navlogo.png" }) {
+        name
+        childImageSharp {
+          fixed(height: 72, quality: 100) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `)
+
 
   return (
     <header className={headerStyles.container}>
       <Navbar variant="light" sticky={"top"} className={`py-0 ${headerStyles.shadowNav}`}>
         <Navbar.Brand>
           <Link to="/" className="navbar-brand">
-            <img src={logo} alt={siteTitle} />
+            <Img
+              fixed={data.file.childImageSharp.fixed}
+              alt={data.file.name} />
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

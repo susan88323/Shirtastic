@@ -19,7 +19,14 @@ export const query = graphql`
       id
       items {
         id
-        image
+        image {
+          name
+          childImageSharp {
+            fixed(width: 200, quality: 100) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
         price
         qty
         size

@@ -10,6 +10,8 @@ import { ADD_TO_CART, useStateValue } from "../state/state"
 import { Link } from "gatsby"
 import { navigate } from "../../.cache/gatsby-browser-entry"
 
+import Img from "gatsby-image"
+
 const ProductCard = ({ item }) => {
   const [isHoveredCart, setHoveredCart] = useState(false)
   const [isHoveredEdit, setHoveredEdit] = useState(false)
@@ -17,8 +19,8 @@ const ProductCard = ({ item }) => {
   const [{ cart }, dispatch] = useStateValue()
 
   useEffect(() => {
-    const bestPriceItem = item.node.items.reduce((prev, curr) => (prev.price < curr.price ? prev : curr))
-    setFeatured({ ...item.node, items: bestPriceItem })
+    const bestPriceItem = item.items.reduce((prev, curr) => (prev.price < curr.price ? prev : curr))
+    setFeatured({ ...item, items: bestPriceItem })
     return () => {}
   }, [item])
   const handleAddToCart = () => {
@@ -30,7 +32,11 @@ const ProductCard = ({ item }) => {
       {featuredItem && (
         <Card className={styles.card}>
           <Link to={`/product/${featuredItem.id}`} className={styles.link}>
-            <Card.Img variant="top" src={"../" + featuredItem.items.image} />
+            <Img
+              className="card-img-top"
+              fluid={featuredItem.items.image.childImageSharp.fluid}
+              alt={featuredItem.name}
+            />
             <Card.Title className={styles.cardTitle}>{featuredItem.name}</Card.Title>
             <Card.Body className={styles.cardDescription}>{featuredItem.description}</Card.Body>
           </Link>
