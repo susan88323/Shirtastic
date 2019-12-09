@@ -3,21 +3,21 @@ import React, { useEffect, useState } from "react"
 import CatalogTabs from "../components/catalog-tabs"
 import Layout from "../hoc/layout"
 import ProductsList from "../components/products-list"
-import { dataSource } from "../data/data"
-const IndexPage = () => {
+import { graphql } from "gatsby"
+const IndexPage = ({ data }) => {
+  const { allDataJson } = data
   const [category, setCategory] = useState(0)
-  const [data, setData] = useState(dataSource)
-
+  const [dataSource, setDataSource] = useState([])
   useEffect(() => {
     switch (category) {
       case 0:
-        setData(dataSource)
+        setDataSource(allDataJson.edges)
         break
       case 1:
-        setData([...dataSource].filter(item => item.gender === "M"))
+        setDataSource([...allDataJson.edges].filter(edge => edge.node.gender === "M"))
         break
       case 2:
-        setData([...dataSource].filter(item => item.gender === "W"))
+        setDataSource([...allDataJson.edges].filter(edge => edge.node.gender === "W"))
         break
     }
   }, [category])
@@ -25,9 +25,32 @@ const IndexPage = () => {
   return (
     <Layout>
       <CatalogTabs onSelect={id => setCategory(id)} selectedId={category} />
-      <ProductsList items={data} />
+      <ProductsList items={dataSource} />
     </Layout>
   )
 }
 
+
 export default IndexPage
+export const query = graphql`
+{
+  allDataJson {
+    edges {
+      node {
+        id
+        items {
+          id
+          image
+          price
+          qty
+          size
+        }
+        gender
+        description
+        name
+      }
+    }
+  }
+}
+`
+

@@ -2,10 +2,11 @@ import React from "react"
 import ProductItem from "../components/product-item"
 import Layout from "../hoc/layout"
 
-const ProductTemplate = ({ id }) => {
+const ProductTemplate = ({ props }) => {
+  console.log('walalala', props);
   return (
     <Layout>
-      <ProductItem id={id} />
+      <ProductItem productItem={props.pageContext} />
     </Layout>
   )
 }

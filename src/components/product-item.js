@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react"
-import { dataSource } from "../data/data"
 import styles from "./product-item.module.scss"
 import { Col, Row } from "react-bootstrap"
 import BasketIcon from "./basket-icon"
 import { ADD_TO_CART, useStateValue } from "../state/state"
 
-const ProductItem = ({ id }) => {
-  const [product, setProduct] = useState()
+const ProductItem = ({ productItem }) => {
   const [selectedItem, setSelected] = useState()
 
   useEffect(() => {
-    const data = dataSource.find(item => item.id === parseInt(id))
-    setProduct(data)
-    setSelected({ ...data, items: data.items.reduce((prev, curr) => (prev.price < curr.price ? prev : curr)) })
-  }, [id])
+    setSelected({
+      ...productItem,
+      items: productItem.items.reduce((prev, curr) => (prev.price < curr.price ? prev : curr)) })
+  }, [productItem])
 
   const [{ cart }, dispatch] = useStateValue()
   return (
@@ -22,7 +20,11 @@ const ProductItem = ({ id }) => {
         <div className={styles.mainContainer}>
           <div className={styles.previewContainer}>
             <div className={styles.selectedPreviewContainer}>
-              <img className={styles.selectedPreviewImage} src={selectedItem.items.image} alt={product.name} />
+              <img
+                className={styles.selectedPreviewImage}
+                src={`../${selectedItem.items.image}`}
+                alt={productItem.name}
+              />
               <span>Available sizes:</span>
               <div className="d-flex flex-row align-items-center justify-content-between">
                 {selectedItem.items.size.map((size, index) => (
@@ -33,7 +35,7 @@ const ProductItem = ({ id }) => {
               </div>
             </div>
             <Row className={styles.optionsContainer}>
-              {product.items
+              {productItem.items
                 .filter(item => item.id !== selectedItem.items.id)
                 .map(item => (
                   <Col
@@ -43,7 +45,7 @@ const ProductItem = ({ id }) => {
                     key={item.id}
                     onClick={() => setSelected({ ...selectedItem, items: item })}
                   >
-                    <img src={item.image} alt={product.name} />
+                    <img src={`../${item.image}`} alt={productItem.name} />
                   </Col>
                 ))}
             </Row>
