@@ -1,0 +1,29 @@
+.list-container {
+    ul {
+        display: inline-block;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        background-color: white;
+        border-radius: 0.5rem;
+    }
+
+    li {
+        display: inline-block;
+        border-radius: 0.5rem;
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+        a {
+            cursor: pointer;
+            padding: 0.4rem 1rem;
+        }
+        &.disabled {
+            a {
+                color: #bbb;
+            }
+        }
+        &.active {
+            border-radius: 0.25rem;
+            border: 1px solid #10A2DC;
+        }
+    }
+}

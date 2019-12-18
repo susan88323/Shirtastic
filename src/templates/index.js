@@ -3,38 +3,33 @@ import React, { useEffect, useState } from "react"
 import CatalogTabs from "../components/catalog-tabs"
 import Layout from "../hoc/layout"
 import ProductsList from "../components/products-list"
-import {graphql} from "gatsby"
-const IndexPage = ({ data }) => {
+import {graphql, navigate} from "gatsby"
+const IndexPage = ({ data, pageContext }) => {
   const { allDataJson } = data
   const [category, setCategory] = useState(0)
   const [dataSource, setDataSource] = useState([])
 
-  useEffect(() => {
-    switch (category) {
-      case 0:
-        setDataSource(allDataJson.edges)
-        break
-      case 1:
-        setDataSource([...allDataJson.edges].filter(edge => edge.node.gender === "M"))
-        break
-      case 2:
-        setDataSource([...allDataJson.edges].filter(edge => edge.node.gender === "W"))
-        break
-    }
-  }, [category])
-
+  const {currentPage, numPages} = pageContext
+  const handlePageSelected = async ({selected}) => {
+    await navigate(`${category === 0 ? "" : category === 1 ? "men" : "women"}/${selected === 0 ? "" : selected + 1}`)
+  }
   return (
     <Layout>
-      <CatalogTabs onSelect={id => setCategory(id)} selectedId={category} />
-      <ProductsList items={dataSource} />
+      <CatalogTabs />
+      <ProductsList
+        items={allDataJson.edges}
+        currentPage={currentPage}
+        numPages={numPages}
+        pageSelected={data => handlePageSelected(data)} />
     </Layout>
   )
 }
 
 export default IndexPage
 export const query = graphql`
+  query productListQuery($skip: Int!, $limit: Int!, $gender: String!)
   {
-    allDataJson {
+    allDataJson(limit: $limit, skip: $skip, filter: {gender: {regex: $gender}}) {
       edges {
         node {
           id

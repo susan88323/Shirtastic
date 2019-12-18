@@ -30,7 +30,7 @@ const ProductCard = ({ item }) => {
       {featuredItem && (
         <Card className={styles.card}>
           <Link to={`/product/${featuredItem.id}`} className={styles.link}>
-            <Card.Img variant="top" src={featuredItem.items.image} />
+            <Card.Img variant="top" src={"../" + featuredItem.items.image} />
             <Card.Title className={styles.cardTitle}>{featuredItem.name}</Card.Title>
             <Card.Body className={styles.cardDescription}>{featuredItem.description}</Card.Body>
           </Link>
