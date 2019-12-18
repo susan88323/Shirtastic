@@ -7,6 +7,7 @@ module.exports = {
       phone: "+1 (000) 000 0000",
     },
     author: `dev6`,
+    titleTemplate: "%s · Shirtastic"
   },
   plugins: [
     `gatsby-plugin-sass`,
@@ -57,6 +58,7 @@ module.exports = {
           }
         ]
       }
-    }
+    },
+    `gatsby-plugin-react-helmet`
   ],
 }

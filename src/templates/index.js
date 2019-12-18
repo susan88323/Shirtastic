@@ -4,6 +4,7 @@ import CatalogTabs from "../components/catalog-tabs"
 import Layout from "../hoc/layout"
 import ProductsList from "../components/products-list"
 import {graphql, navigate} from "gatsby"
+import SEO from "../components/seo"
 const IndexPage = ({ data, pageContext }) => {
   const { allDataJson } = data
   const [category, setCategory] = useState(0)
@@ -15,6 +16,7 @@ const IndexPage = ({ data, pageContext }) => {
   }
   return (
     <Layout>
+      <SEO />
       <CatalogTabs />
       <ProductsList
         items={allDataJson.edges.map(edge => edge.node)}
