@@ -10,6 +10,27 @@ module.exports = {
     titleTemplate: "%s · Shirtastic"
   },
   plugins: [
+    { 
+      resolve: "gatsby-source-filesystem", 
+      options: { 
+        path: `${__dirname}/static/images`, 
+        name: "uploads", 
+      }, 
+    }, 
+    { 
+      resolve: "gatsby-source-filesystem", 
+      options: { 
+        path: `${__dirname}/src/images`, 
+        name: "images", 
+      }, 
+    }, 
+    { 
+      resolve: "gatsby-source-filesystem", 
+      options: { 
+        path: `${__dirname}/src/pages`, 
+        name: "pages", 
+      }, 
+    }, 
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-create-client-paths`,
@@ -59,6 +80,12 @@ module.exports = {
         ]
       }
     },
-    `gatsby-plugin-react-helmet`
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-netlify-cms`,
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.js`
+      }
+    }
   ],
 }
