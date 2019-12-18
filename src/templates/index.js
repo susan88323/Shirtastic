@@ -17,7 +17,7 @@ const IndexPage = ({ data, pageContext }) => {
     <Layout>
       <CatalogTabs />
       <ProductsList
-        items={allDataJson.edges}
+        items={allDataJson.edges.map(edge => edge.node)}
         currentPage={currentPage}
         numPages={numPages}
         pageSelected={data => handlePageSelected(data)} />
@@ -35,7 +35,13 @@ export const query = graphql`
           id
           items {
             id
-            image
+            image {
+              childImageSharp {
+                fluid(maxWidth: 300, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             price
             qty
             size

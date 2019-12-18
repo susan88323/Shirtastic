@@ -7,14 +7,14 @@ import "./products-list.scss"
 
 const ProductsList = ({ items, currentPage, numPages, pageSelected }) => {
   const shirts = items.map((item) => (
-    <Col key={item.node.id} xs lg={4} md={6} sm={12}>
+    <Col key={item.id} xs lg={4} md={6} sm={12}>
       <ProductCard item={item} />
     </Col>
   ))
 
   return(
     <div className="list-container d-flex flex-column align-items-center w-100 justify-content-between">
-      <Row className="mt-3">{shirts}</Row>
+      <Row className="w-100 mt-3">{shirts}</Row>
       {numPages > 1 && (
         <Row className="mt-3">
           <ReactPaginate
